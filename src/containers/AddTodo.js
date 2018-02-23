@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import { addTodo } from '../actions/todoActions';
+import { connect } from 'react-redux';
+
 class AddTodo extends Component {
   constructor(props) {
     super(props);
@@ -49,4 +52,19 @@ class AddTodo extends Component {
   }
 }
 
-export default AddTodo
+const mapStateToProps = state => {
+  return {
+    todos: state.todos.todos,
+    nextId: state.todos.nextId
+  }
+}
+
+const mapDispatchToProps = {
+  addTodo
+}
+
+const ConnectedAddTodo = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddTodo)
+export default ConnectedAddTodo 
